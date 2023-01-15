@@ -6,6 +6,7 @@ import Link from "next/link";
 import { Button, ButtonGroup } from "@chakra-ui/react";
 import React, { useState } from "react";
 import { useRouter } from "next/router";
+import { Input } from "@chakra-ui/react";
 
 // key press of anything other than a-g should be dealt with
 
@@ -37,7 +38,7 @@ const Home: NextPage = () => {
 		console.log("key released date/time");
 		const diff = +new Date() - keyPress;
 		console.log(diff);
-		setKeyRelease(diff);
+		setKeyRelease(diff / 1000);
 	};
 
 	return (
@@ -88,7 +89,7 @@ const Home: NextPage = () => {
 						quick fix: show the button click, figure out if it's upper or lower
 						case? and then add a flat or sharp
 					</p>
-					<input type="text" onKeyDown={onKeyDown} onKeyUp={onKeUp} />
+					<Input type="text" onKeyDown={onKeyDown} onKeyUp={onKeUp} />
 					{keyRelease}
 				</div>
 			</main>
