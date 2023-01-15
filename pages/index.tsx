@@ -89,6 +89,11 @@ const Home: NextPage = () => {
 						quick fix: show the button click, figure out if it's upper or lower
 						case? and then add a flat or sharp
 					</p>
+					{/* the input needs to be a component that can be used in all pages */}
+					{/* deal with the upper and lower case letters */}
+					{/* deal with only a-g */}
+					{/* program functionality of mappying the time to a type of note */}
+					{/* show the note either normal, flat, sharp and the type of note */}
 					<Input type="text" onKeyDown={onKeyDown} onKeyUp={onKeUp} />
 					{keyRelease}
 				</div>
