@@ -7,19 +7,26 @@ import { Button, ButtonGroup } from "@chakra-ui/react";
 import React, { useState } from "react";
 import { useRouter } from "next/router";
 import { Input } from "@chakra-ui/react";
+import { DummyData } from "../types";
 
 // key press of anything other than a-g should be dealt with
 
 // need a useRef to store the amount of pages
 
-const Home: NextPage = () => {
+// reminder: add interfaces/ types to components
+
+type Props = {
+  data: DummyData;
+};
+
+const Home: NextPage<Props> = (Props) => {
   const [noClicks, setNoClicks] = useState(0);
   const [keyPress, setKeyPress] = useState(+new Date());
   const [keyRelease, setKeyRelease] = useState();
 
   const router = useRouter();
 
-  let date;
+  let date: number;
 
   const updateClicks = () => {
     // store the last click to preserve the button rendered
@@ -38,7 +45,7 @@ const Home: NextPage = () => {
 
   const onKeyDown = (e: React.KeyboardEvent) => {
     console.log("key released date/time");
-    const diff = +new Date() - keyPress;
+    const diff: number = +new Date() - keyPress;
     console.log(diff);
     setKeyRelease(diff / 1000);
   };
@@ -54,6 +61,8 @@ const Home: NextPage = () => {
     },
   ];
 
+  console.log(Props);
+
   return (
     <div className={styles.container}>
       <Head>
@@ -66,7 +75,7 @@ const Home: NextPage = () => {
         <Button colorScheme="red" onClick={updateClicks}>
           New
         </Button>
-        {dummyData.map((a: any) => (
+        {dummyData.map((a: { id: number; name: string }) => (
           <Link key={a.id} href={`/${a.id}`}>
             {a.name}
           </Link>
