@@ -43,7 +43,7 @@ const Home: NextPage = () => {
     setKeyRelease(diff / 1000);
   };
 
-  const dummyData: any = [
+  const dummyData: { id: number; name: string }[] = [
     {
       id: 1,
       name: "test",
