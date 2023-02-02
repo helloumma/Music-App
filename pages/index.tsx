@@ -8,7 +8,7 @@ import React, { useState } from "react";
 import { useRouter } from "next/router";
 import { Input } from "@chakra-ui/react";
 import { DummyData } from "../types";
-
+import { Flex, Spacer } from "@chakra-ui/react";
 // key press of anything other than a-g should be dealt with
 
 // need a useRef to store the amount of pages
@@ -97,12 +97,14 @@ const Home: NextPage<Props> = (Props) => {
         <Button colorScheme="red" onClick={handleClick}>
           New
         </Button>
-        {buttons}
+        <Flex key={count} direction={"row"} justifyContent="center">
+          {buttons}
+        </Flex>
+
         {/* map over the number of clicks and create a button for each  */}
 
         <div>
           <h1>TO DO</h1>
-          <p>show buttons for each page on new button click</p>
           <p>
             program the functionality of key press (for now show text and it can
             be changed to an icon/notation after)
@@ -119,7 +121,7 @@ const Home: NextPage<Props> = (Props) => {
           {/* the input needs to be a component that can be used in all pages */}
           {/* deal with the upper and lower case letters */}
           {/* deal with only a-g */}
-          {/* program functionality of mappying the time to a type of note */}
+          {/* program functionality of mapying the time to a type of note */}
           {/* show the note either normal, flat, sharp and the type of note */}
           <Input type="text" onKeyDown={onKeyDown} onKeyUp={onKeUp} />
           {keyRelease}
