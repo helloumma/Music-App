@@ -23,6 +23,7 @@ const Home: NextPage<Props> = (Props) => {
   const [noClicks, setNoClicks] = useState(0);
   const [keyPress, setKeyPress] = useState(+new Date());
   const [keyRelease, setKeyRelease] = useState();
+  const [count, setCount] = useState(0);
 
   const router = useRouter();
 
@@ -63,6 +64,18 @@ const Home: NextPage<Props> = (Props) => {
 
   console.log(Props);
 
+  const handleClick = () => {
+    setCount(count + 1);
+  };
+
+  const buttons = Array(count)
+    .fill()
+    .map((_, i) => (
+      <Link key={count} href={`/${i}`}>
+        <Button colorScheme="green">Button {i + 1}</Button>
+      </Link>
+    ));
+
   return (
     <div className={styles.container}>
       <Head>
@@ -72,36 +85,21 @@ const Home: NextPage<Props> = (Props) => {
       </Head>
 
       <main className={styles.main}>
-        <Button colorScheme="red" onClick={updateClicks}>
+        {/*<Button colorScheme="red" onClick={updateClicks}>
           New
         </Button>
         {dummyData.map((a: { id: number; name: string }) => (
           <Link key={a.id} href={`/${a.id}`}>
             {a.name}
           </Link>
-        ))}
+				))}*/}
 
+        <Button colorScheme="red" onClick={handleClick}>
+          New
+        </Button>
+        {buttons}
         {/* map over the number of clicks and create a button for each  */}
-        {noClicks === 0 && (
-          <Link href="/">
-            <Button colorScheme="green">one</Button>
-          </Link>
-        )}
-        {noClicks === 1 && (
-          <Link href="/page-two">
-            <Button colorScheme="green">two</Button>
-          </Link>
-        )}
-        {noClicks === 2 && (
-          <Link href="/page-three">
-            <Button colorScheme="green">three</Button>
-          </Link>
-        )}
-        {noClicks === 3 && (
-          <Link href="/page-four">
-            <Button colorScheme="green">four</Button>
-          </Link>
-        )}
+
         <div>
           <h1>TO DO</h1>
           <p>show buttons for each page on new button click</p>
@@ -132,3 +130,24 @@ const Home: NextPage<Props> = (Props) => {
 };
 
 export default Home;
+/* {noClicks === 0 && (
+          <Link href="/">
+            <Button colorScheme="green">one</Button>
+          </Link>
+        )}
+        {noClicks === 1 && (
+          <Link href="/page-two">
+            <Button colorScheme="green">two</Button>
+          </Link>
+        )}
+        {noClicks === 2 && (
+          <Link href="/page-three">
+            <Button colorScheme="green">three</Button>
+          </Link>
+        )}
+        {noClicks === 3 && (
+          <Link href="/page-four">
+            <Button colorScheme="green">four</Button>
+          </Link>
+        )}
+ */
