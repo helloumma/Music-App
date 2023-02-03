@@ -11,9 +11,7 @@ import { DummyData } from "../types";
 import { Flex, Spacer } from "@chakra-ui/react";
 // key press of anything other than a-g should be dealt with
 
-// need a useRef to store the amount of pages
-
-// reminder: add interfaces/ types to components
+// DO THE ABOVE TOMORROW
 
 type Props = {
   data: DummyData;
@@ -22,7 +20,7 @@ type Props = {
 const Home: NextPage<Props> = (Props) => {
   const [noClicks, setNoClicks] = useState(0);
   const [keyPress, setKeyPress] = useState(+new Date());
-  const [keyRelease, setKeyRelease] = useState();
+  const [keyRelease, setKeyRelease] = useState(0);
   const [count, setCount] = useState(0);
 
   const router = useRouter();
@@ -49,6 +47,10 @@ const Home: NextPage<Props> = (Props) => {
     const diff: number = +new Date() - keyPress;
     console.log(diff);
     setKeyRelease(diff / 1000);
+    console.log(e.key);
+    // if e.key is not a-g alert box
+    if (e.key.match(/[h-z]/gi)) alert("This is not a musical note.");
+    // figure out how to disable/look into focus
   };
 
   const dummyData: { id: number; name: string }[] = [
@@ -69,7 +71,7 @@ const Home: NextPage<Props> = (Props) => {
   };
 
   const buttons = Array(count)
-    .fill()
+    .fill(count)
     .map((_, i) => (
       <Link key={count} href={`/${i}`}>
         <Button colorScheme="green">Button {i + 1}</Button>
@@ -125,6 +127,9 @@ const Home: NextPage<Props> = (Props) => {
           {/* show the note either normal, flat, sharp and the type of note */}
           <Input type="text" onKeyDown={onKeyDown} onKeyUp={onKeUp} />
           {keyRelease}
+          {keyRelease > 1 && "one beat"}
+
+          <p>figure out how to know which key was pressed???</p>
         </div>
       </main>
     </div>
