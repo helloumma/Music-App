@@ -107,29 +107,34 @@ const Home: NextPage<Props> = (Props) => {
 
         <div>
           <h1>TO DO</h1>
-          <p>
-            program the functionality of key press (for now show text and it can
-            be changed to an icon/notation after)
-          </p>
           {/*Store the Date when the key is pressed. Store the Date when the key is released. Subtract the dates. */}
           <p>
             program the functionality of upper and lower case (and remember
             steps between things like e/f etc etc)
           </p>
-          <p>
-            quick fix: show the button click, figure out if it's upper or lower
-            case? and then add a flat or sharp
-          </p>
           {/* the input needs to be a component that can be used in all pages */}
           {/* deal with the upper and lower case letters */}
-          {/* deal with only a-g */}
-          {/* program functionality of mapying the time to a type of note */}
+          {/* program functionality of mapping the time to a type of note */}
           {/* show the note either normal, flat, sharp and the type of note */}
           <Input type="text" onKeyDown={onKeyDown} onKeyUp={onKeUp} />
+          <Button colorScheme="blue">Submit</Button>
+          Use submit instead of entering???
           {keyRelease}
-          {keyRelease > 1 && "one beat"}
-
-          <p>figure out how to know which key was pressed???</p>
+          {keyRelease <= 0.25 && "semi-quaver"}
+          {keyRelease <= 0.5 && "quaver"}
+          {keyRelease <= 1 && "crotchet"}
+          {keyRelease <= 2 && "minimum"}
+          {keyRelease <= 4 && "semibreve"}
+          <h1>TO DO</h1>
+          <p>Show the type of note and the case</p>
+          <p>
+            Program upper and lower case (for step up or down) and then show the
+            type of note
+          </p>
+          <p>
+            Maybe: detect the key pressed and why the note shown (oh that's an
+            upper C so it's c#)
+          </p>
         </div>
       </main>
     </div>
