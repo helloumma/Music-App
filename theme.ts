@@ -17,7 +17,7 @@ export const theme = extendTheme({
 	styles: {
 		global: (props: StyleFunctionProps) => ({
 			body: {
-				color: "default",
+				//color: "default",
 				bg: "purple.100",
 			},
 		}),

@@ -3,12 +3,24 @@ import Head from "next/head";
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
 import Link from "next/link";
-import { Button, ButtonGroup } from "@chakra-ui/react";
+import {
+	Button,
+	ButtonGroup,
+	Menu,
+	MenuButton,
+	MenuList,
+	MenuItem,
+	MenuItemOption,
+	MenuGroup,
+	MenuOptionGroup,
+	MenuDivider,
+} from "@chakra-ui/react";
 import React, { useState } from "react";
 import { useRouter } from "next/router";
 import { Input } from "@chakra-ui/react";
 import { DummyData } from "../types";
 import { Flex, Spacer } from "@chakra-ui/react";
+
 // key press of anything other than a-g should be dealt with
 
 // DO THE ABOVE TOMORROW
@@ -93,6 +105,16 @@ const Home: NextPage<Props> = (Props) => {
 					Add a dropdown menu to select the time signature and then program the
 					timing of each note!!!! beats per min etc.
 				</p>
+				<Menu>
+					<MenuButton as={Button}>Actions</MenuButton>
+					<MenuList>
+						<MenuItem>Download</MenuItem>
+						<MenuItem>Create a Copy</MenuItem>
+						<MenuItem>Mark as Draft</MenuItem>
+						<MenuItem>Delete</MenuItem>
+						<MenuItem>Attend a Workshop</MenuItem>
+					</MenuList>
+				</Menu>
 				{/*<Button colorScheme="red" onClick={updateClicks}>
           New
         </Button>
