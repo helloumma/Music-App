@@ -106,7 +106,7 @@ const Home: NextPage<Props> = (Props) => {
 					timing of each note!!!! beats per min etc.
 				</p>
 				<Menu>
-					<MenuButton as={Button}>Actions</MenuButton>
+					<MenuButton as={Button}>Time Signature [TO DO]</MenuButton>
 					<MenuList>
 						<MenuItem>Download</MenuItem>
 						<MenuItem>Create a Copy</MenuItem>
