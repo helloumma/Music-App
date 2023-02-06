@@ -87,6 +87,10 @@ const Home: NextPage<Props> = (Props) => {
       </Head>
 
       <main className={styles.main}>
+        <p>
+          Add a dropdown menu to select the time signature and then program the
+          timing of each note!!!! beats per min etc.
+        </p>
         {/*<Button colorScheme="red" onClick={updateClicks}>
           New
         </Button>
@@ -116,17 +120,34 @@ const Home: NextPage<Props> = (Props) => {
           {/* deal with the upper and lower case letters */}
           {/* program functionality of mapping the time to a type of note */}
           {/* show the note either normal, flat, sharp and the type of note */}
-          <Input type="text" onKeyDown={onKeyDown} onKeyUp={onKeUp} />
-          <Button colorScheme="blue">Submit</Button>
-          Use submit instead of entering???
+          <Flex direction={"row"} justifyContent="center">
+            <Input type="text" onKeyDown={onKeyDown} onKeyUp={onKeUp} />
+            {/*<Button colorScheme="blue">Submit</Button>*/}
+          </Flex>
+
+          {/*Use submit instead of entering???*/}
           {keyRelease}
-          {keyRelease <= 0.25 && "semi-quaver"}
-          {keyRelease <= 0.5 && "quaver"}
-          {keyRelease <= 1 && "crotchet"}
-          {keyRelease <= 2 && "minimum"}
-          {keyRelease <= 4 && "semibreve"}
-          <h1>TO DO</h1>
-          <p>Show the type of note and the case</p>
+          {keyRelease < 0
+            ? ""
+            : keyRelease <= 0.25
+            ? "semi-quaver"
+              ? keyRelease <= 0.5
+              : "quaver"
+              ? keyRelease <= 1
+              : "crotchet"
+              ? keyRelease <= 2
+              : "minimum"
+              ? keyRelease <= 4
+              : "semibreve"
+            : ""}
+          {/*keyRelease > 0 && keyRelease <= 0.25 ? "semi-quaver" : "no"*/}
+          {keyRelease >= 0.25 && "semi-quaver"}
+          {keyRelease >= 0.5 && "quaver"}
+          {keyRelease >= 1 && "crotchet"}
+          {keyRelease >= 2 && "minimum"}
+          {keyRelease >= 4 && "semibreve"}
+          {/*<h1>TO DO</h1>
+         <p>Show the type of note and the case</p>
           <p>
             Program upper and lower case (for step up or down) and then show the
             type of note
@@ -134,7 +155,7 @@ const Home: NextPage<Props> = (Props) => {
           <p>
             Maybe: detect the key pressed and why the note shown (oh that's an
             upper C so it's c#)
-          </p>
+						</p>*/}
         </div>
       </main>
     </div>

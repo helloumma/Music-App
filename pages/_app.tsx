@@ -10,8 +10,9 @@ const colors = {
     700: "#2a69ac",
   },
 };
+const backgroundColor = "red";
 
-const theme = extendTheme({ colors });
+const theme = extendTheme({ colors, backgroundColor });
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
