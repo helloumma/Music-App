@@ -101,20 +101,35 @@ const Home: NextPage<Props> = (Props) => {
       </Head>
 
       <main className={styles.main}>
-        <p>
+        [APP TITLE TO GO HERE]
+        <div>
+          {/**background: #f4f3b0;
+    padding: 2em;
+    border-radius: 0.5em; */}
+          <Flex direction={"row"} justifyContent={"space-between"}>
+            <Button colorScheme="red" onClick={handleClick}>
+              New
+            </Button>
+            <Menu>
+              <MenuButton as={Button}>Time Signature [TO DO]</MenuButton>
+              <MenuList>
+                <MenuItem>2/4</MenuItem>
+                <MenuItem>3/4</MenuItem>
+                <MenuItem>4/4</MenuItem>
+                <MenuItem>6/8</MenuItem>
+              </MenuList>
+            </Menu>
+          </Flex>
+
+          <Flex key={count} direction={"row"} justifyContent="center">
+            {buttons}
+          </Flex>
+          {/*<p>
           Add a dropdown menu to select the time signature and then program the
           timing of each note!!!! beats per min etc.
-        </p>
-        <Menu>
-          <MenuButton as={Button}>Time Signature [TO DO]</MenuButton>
-          <MenuList>
-            <MenuItem>2/4</MenuItem>
-            <MenuItem>3/4</MenuItem>
-            <MenuItem>4/4</MenuItem>
-            <MenuItem>6/8</MenuItem>
-          </MenuList>
-        </Menu>
-        {/*<Button colorScheme="red" onClick={updateClicks}>
+	</p>*/}
+
+          {/*<Button colorScheme="red" onClick={updateClicks}>
           New
         </Button>
         {dummyData.map((a: { id: number; name: string }) => (
@@ -123,18 +138,10 @@ const Home: NextPage<Props> = (Props) => {
           </Link>
 				))}*/}
 
-        <Button colorScheme="red" onClick={handleClick}>
-          New
-        </Button>
-        <Flex key={count} direction={"row"} justifyContent="center">
-          {buttons}
-        </Flex>
+          {/* map over the number of clicks and create a button for each  */}
 
-        {/* map over the number of clicks and create a button for each  */}
-
-        <div>
-          <h1>TO DO</h1>
           {/*Store the Date when the key is pressed. Store the Date when the key is released. Subtract the dates. */}
+          <h1>CALCULATIONS FOR TIME SIGNATURES</h1>
           <p>
             program the functionality of upper and lower case (and remember
             steps between things like e/f etc etc)
