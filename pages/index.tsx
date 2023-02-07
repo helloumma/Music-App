@@ -102,6 +102,8 @@ const Home: NextPage<Props> = (Props) => {
 
       <main className={styles.main}>
 			<h1 className="app-title">music app</h1>
+			<p>Add the input/buttons selection here and then render the correct instructions (changing number 2)</p>
+			<p>hide the instructions until the user makes a selection</p>
 		<div className="main-instructions">
 				<ol>
 					<li>Select a time signature from the menu</li>
@@ -159,11 +161,14 @@ const Home: NextPage<Props> = (Props) => {
           </p>
 
 					<p>Potentially have an option to have buttons A to G, with a click handler of timing of click up and off</p>
+					<p>Idea: Create an option/button which enables the user to select between input and button </p>
+					<p>Maybe: Get the user to press down on a series of notes to make up the time signature</p>
           {/* the input needs to be a component that can be used in all pages */}
           {/* deal with the upper and lower case letters */}
           {/* program functionality of mapping the time to a type of note */}
           {/* show the note either normal, flat, sharp and the type of note */}
-          <Flex direction={"row"} justifyContent="center">
+          <p>show and hide buttons/input here</p>
+					<Flex direction={"row"} justifyContent="center">
             <Input type="text" onKeyDown={onKeyDown} onKeyUp={onKeUp} />
             {/*<Button colorScheme="blue">Submit</Button>*/}
           </Flex>
