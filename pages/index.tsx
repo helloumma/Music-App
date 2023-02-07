@@ -34,6 +34,8 @@ const Home: NextPage<Props> = (Props) => {
   const [keyPress, setKeyPress] = useState(+new Date());
   const [keyRelease, setKeyRelease] = useState(0);
   const [count, setCount] = useState(0);
+	const [inputSelect, setInputSelect] = useState(false)
+	const [buttonSelect, setButtonSelect] = useState(false)
 
   const router = useRouter();
 
@@ -92,6 +94,18 @@ const Home: NextPage<Props> = (Props) => {
       </Link>
     ));
 
+	const inputClick = () => {
+		//e.preventdefault()
+		setInputSelect(true)
+		setButtonSelect(false)
+	}
+
+	const buttonClick = () => {
+		setInputSelect(false)
+		setButtonSelect(true)
+
+		
+	}
   return (
     <div className={styles.container}>
       <Head>
@@ -102,16 +116,22 @@ const Home: NextPage<Props> = (Props) => {
 
       <main className={styles.main}>
 			<h1 className="app-title">music app</h1>
-			<p>Add the input/buttons selection here and then render the correct instructions (changing number 2)</p>
-			<p>hide the instructions until the user makes a selection</p>
+			<p>This is a small music app to gain a better understanding of time signatures and types of music notes.</p>
+			<Flex direction={"row"}>
+			<Button colorScheme="blue" onClick={inputClick}>Input Box</Button>
+			<Button colorScheme="blue" onClick={buttonClick}>Buttons</Button>
+				</Flex>
+			
 		<div className="main-instructions">
-				<ol>
+			{inputSelect || buttonSelect ? (<ol>
 					<li>Select a time signature from the menu</li>
-					<li>Hold down a letter between A to G into the input box</li>
+					{inputSelect && <li>Hold down a letter between A to G into the input box</li> }
+					{buttonSelect && <li>Click and hold on buttons letter between A to G into the input box</li>}
 					<li>The type of note will be shown on screen </li>
 					<li>You may create new pages to experiment with different notes and signatures</li>
 					<li>You cannot input values outside of A to G</li>
-				</ol>
+				</ol>) : "Make a selection above to view instructions."}
+				
 		</div>
         <div className="main-section">
           <Flex direction={"row"} justifyContent={"space-between"}>
@@ -169,7 +189,22 @@ const Home: NextPage<Props> = (Props) => {
           {/* show the note either normal, flat, sharp and the type of note */}
           <p>show and hide buttons/input here</p>
 					<Flex direction={"row"} justifyContent="center">
-            <Input type="text" onKeyDown={onKeyDown} onKeyUp={onKeUp} />
+						{inputSelect && (
+							<Input type="text" onKeyDown={onKeyDown} onKeyUp={onKeUp} />
+						)}
+            {buttonSelect && (
+							<>
+							<Button>A</Button>
+							<Button>B</Button>
+							<Button>C</Button>
+							<Button>D</Button>
+							<Button>E</Button>
+							<Button>F</Button>
+							<Button>G</Button>
+							</>
+							
+
+						)}
             {/*<Button colorScheme="blue">Submit</Button>*/}
           </Flex>
 
