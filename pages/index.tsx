@@ -102,10 +102,11 @@ const Home: NextPage<Props> = (Props) => {
 
       <main className={styles.main}>
         [APP TITLE TO GO HERE]
-        <div>
-          {/**background: #f4f3b0;
+        <div className="main-section">
+          {/**background: #ffe6e6;
     padding: 2em;
-    border-radius: 0.5em; */}
+   box-shadow: 0.5rem 0.5rem black;
+ */}
           <Flex direction={"row"} justifyContent={"space-between"}>
             <Button colorScheme="red" onClick={handleClick}>
               New
@@ -142,6 +143,11 @@ const Home: NextPage<Props> = (Props) => {
 
           {/*Store the Date when the key is pressed. Store the Date when the key is released. Subtract the dates. */}
           <h1>CALCULATIONS FOR TIME SIGNATURES</h1>
+
+					<p>2/4 => two crochets per semibreve</p>
+					<p>3/4 => three crochet per semibreve</p>
+					<p>4/4 => one crochet per semibreve</p>
+
           <p>
             program the functionality of upper and lower case (and remember
             steps between things like e/f etc etc)

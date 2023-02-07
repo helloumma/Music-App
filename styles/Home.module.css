@@ -85,6 +85,12 @@
   max-width: 300px;
 }
 
+.main-section {
+  background: #ffe6e6;
+  padding: 2em;
+  box-shadow: 0.5rem 0.5rem black;
+}
+
 .card:hover,
 .card:focus,
 .card:active {
