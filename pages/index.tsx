@@ -117,10 +117,7 @@ const Home: NextPage<Props> = (Props) => {
       <main className={styles.main}>
 			<h1 className="app-title">music app</h1>
 			<p>This is a small music app to gain a better understanding of time signatures and types of music notes.</p>
-			<Flex direction={"row"}>
-			<Button colorScheme="blue" onClick={inputClick}>Input Box</Button>
-			<Button colorScheme="blue" onClick={buttonClick}>Buttons</Button>
-				</Flex>
+			
 			
 		<div className="main-instructions">
 			{inputSelect || buttonSelect ? (<ol>
@@ -130,9 +127,13 @@ const Home: NextPage<Props> = (Props) => {
 					<li>The type of note will be shown on screen </li>
 					<li>You may create new pages to experiment with different notes and signatures</li>
 					<li>You cannot input values outside of A to G</li>
-				</ol>) : "Make a selection above to view instructions."}
+				</ol>) : "Make a selection below to view instructions."}
 				
 		</div>
+		<Flex direction={"row"}>
+			<Button colorScheme="blue" onClick={inputClick}>Input Box</Button>
+			<Button colorScheme="blue" onClick={buttonClick}>Buttons</Button>
+				</Flex>
         <div className="main-section">
           <Flex direction={"row"} justifyContent={"space-between"}>
             <Button colorScheme="red" onClick={handleClick}>
