@@ -105,10 +105,10 @@ const Home: NextPage<Props> = (Props) => {
 		<div className="main-instructions">
 				<ol>
 					<li>Select a time signature from the menu</li>
-					<li>Hold down a letter between a to g into the input box</li>
+					<li>Hold down a letter between A to G into the input box</li>
 					<li>The type of note will be shown on screen </li>
 					<li>You may create new pages to experiment with different notes and signatures</li>
-					<li>You cannot input notes outside of a to g</li>
+					<li>You cannot input values outside of A to G</li>
 				</ol>
 		</div>
         <div className="main-section">
@@ -157,6 +157,8 @@ const Home: NextPage<Props> = (Props) => {
             program the functionality of upper and lower case (and remember
             steps between things like e/f etc etc)
           </p>
+
+					<p>Potentially have an option to have buttons A to G, with a click handler of timing of click up and off</p>
           {/* the input needs to be a component that can be used in all pages */}
           {/* deal with the upper and lower case letters */}
           {/* program functionality of mapping the time to a type of note */}
