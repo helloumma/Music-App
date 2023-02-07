@@ -101,12 +101,17 @@ const Home: NextPage<Props> = (Props) => {
       </Head>
 
       <main className={styles.main}>
-        [APP TITLE TO GO HERE]
+			<h1 className="app-title">music app</h1>
+		<div className="main-instructions">
+				<ol>
+					<li>Select a time signature from the menu</li>
+					<li>Hold down a letter between a to g into the input box</li>
+					<li>The type of note will be shown on screen </li>
+					<li>You may create new pages to experiment with different notes and signatures</li>
+					<li>You cannot input notes outside of a to g</li>
+				</ol>
+		</div>
         <div className="main-section">
-          {/**background: #ffe6e6;
-    padding: 2em;
-   box-shadow: 0.5rem 0.5rem black;
- */}
           <Flex direction={"row"} justifyContent={"space-between"}>
             <Button colorScheme="red" onClick={handleClick}>
               New

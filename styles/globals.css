@@ -30,3 +30,15 @@ a {
   padding: 2em;
   box-shadow: 0.5rem 0.5rem black;
 }
+
+.main-instructions {
+  background: #b6f2bc;
+  padding: 1em 3em;
+  margin-bottom: 1em;
+  font-family: "Courier New", Courier, monospace;
+}
+
+.app-title {
+  font-weight: bolder;
+  font-size: 3em;
+}
