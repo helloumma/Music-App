@@ -51,20 +51,40 @@ export interface DummyData {
 }
  */
 
-export type tryingData = DataContainer<[{
+export type tryingData = DataContainer<{
   id: number,
   name: string
-}]>
+}>
 
-const test:tryingData = {
+/*const test:tryingData = {
   data: [{
     id: 0,
     name: "test1"
   }, ]
-}
+}*/
+
+/*
+ const dummyData: { id: number; name: string }[] = [
+    {
+      id: 1,
+      name: "test",
+    },
+    {
+      id: 2,
+      name: "test 2",
+    },
+  ];*/
 
 //console.log(test)
-console.log(test?.data.map((a: { id: number; name: string }) => a.id +  a.name))
+//console.log(test?.data.map((a: { id: number; name: string }) => a.id +  a.name))
+
+const test: tryingData = {
+  data: {
+    id: 0,
+    name: "test"
+  }
+}
+
 
 
 const Home: NextPage<Props> = (Props) => {
