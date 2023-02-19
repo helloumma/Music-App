@@ -18,7 +18,7 @@ import {
 import React, { useState } from "react";
 import { useRouter } from "next/router";
 import { Input } from "@chakra-ui/react";
-import { DummyData } from "../types";
+import { DummyData, DataContainer } from "../types";
 import { Flex, Spacer } from "@chakra-ui/react";
 
 // key press of anything other than a-g should be dealt with
@@ -28,6 +28,44 @@ import { Flex, Spacer } from "@chakra-ui/react";
 type Props = {
   data: DummyData;
 };
+
+
+
+
+/*
+ const dummyData: { id: number; name: string }[] = [
+    {
+      id: 1,
+      name: "test",
+    },
+    {
+      id: 2,
+      name: "test 2",
+    },
+  ]; */
+
+/*
+export interface DummyData {
+	id: number;
+	name: string;
+}
+ */
+
+export type tryingData = DataContainer<[{
+  id: number,
+  name: string
+}]>
+
+const test:tryingData = {
+  data: [{
+    id: 0,
+    name: "test1"
+  }, ]
+}
+
+//console.log(test)
+console.log(test?.data.map((a: { id: number; name: string }) => a.id +  a.name))
+
 
 const Home: NextPage<Props> = (Props) => {
   const [noClicks, setNoClicks] = useState(0);
@@ -78,7 +116,9 @@ const Home: NextPage<Props> = (Props) => {
     },
   ];
 
-  console.log(Props);
+  //console.log(myData)
+
+  //console.log(Props);
 
   const handleClick = () => {
     setCount(count + 1);
@@ -166,6 +206,7 @@ const Home: NextPage<Props> = (Props) => {
             {a.name}
           </Link>
 				))}*/}
+      
 
           {/* map over the number of clicks and create a button for each  */}
 
