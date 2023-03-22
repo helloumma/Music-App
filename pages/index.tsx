@@ -2,47 +2,21 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
 import Link from "next/link";
-import {
-	Button,
-	Menu,
-	MenuButton,
-	MenuList,
-	MenuItem,
-	useMenuState,
-} from "@chakra-ui/react";
+import { Button, Menu, MenuButton, MenuList, MenuItem } from "@chakra-ui/react";
 import React, { useState } from "react";
 import { Input } from "@chakra-ui/react";
 import { DataContainer } from "../types";
 import { Flex } from "@chakra-ui/react";
 
-/*
-
-  TO DO [24th feb - 26th feb]
-
-  24th Feb
-  * program user selection of dropdown menu + the total keys in the input box + the total time => add an alert box of correct or wrong
-  * program constrains for only entering notes for one bar in the time signature
-  
-  25th Feb
-  * program click handler on the buttons
-  * program user selection of dropdown menu + total time => input box
-  * program reusable component which can be used on the dynamic pages
-  * add a back button on dynamic pages
-  
-  26th Feb
-  * merge into main
-  * deploy a small version of the app
-  * update the read me 
-*/
-
-/*export type tryingData = DataContainer<{
-	id: number;
-	name: string;
-}>;*/
-
 type dropDown = {
 	value: string;
 };
+
+// main functionality: get user to press down on keys, select a time signature => compute total time and then pop up box
+// then refactor the code to make the main section reusable on the dynamic pages + typescript all correct
+// then add some tests via vitetest (don't forget the coverage)
+// update the readme and say the buttons functionality will be next
+// forget about this app, move onto something new and look back at it after 292345 years and cringe.
 
 const Home: NextPage = () => {
 	const [keyPress, setKeyPress] = useState<number>(+new Date());
@@ -53,22 +27,6 @@ const Home: NextPage = () => {
 	const [value, setNewVal] = useState();
 
 	let date: number;
-
-	const onKeUp = (e: React.KeyboardEvent) => {
-		//console.log("key pressed date/time");
-		date = +new Date();
-		setKeyPress(date);
-	};
-
-	const onKeyDown = (e: React.KeyboardEvent) => {
-		//console.log("key released date/time");
-		const diff: number = +new Date() - keyPress;
-		//console.log(diff);
-		setKeyRelease(diff / 1000);
-		//console.log(e.key);
-		if (e.key.match(/[h-z]/gi)) alert("This is not a musical note.");
-		// figure out how to disable/look into focus
-	};
 
 	const handleClick = () => {
 		setCount(count + 1);
@@ -98,33 +56,33 @@ const Home: NextPage = () => {
 		setButtonSelect(true);
 	};
 
+	const onKeUp = (e: React.KeyboardEvent) => {
+		//console.log("key pressed date/time");
+		date = +new Date();
+		setKeyPress(date);
+	};
+
+	const onKeyDown = (e: React.KeyboardEvent) => {
+		//console.log("key released date/time");
+		const diff: number = +new Date() - keyPress;
+		//console.log(diff);
+		setKeyRelease(diff / 1000);
+		//console.log(e.key);
+		if (e.key.match(/[h-z]/gi)) alert("This is not a musical note.");
+		// figure out how to disable/look into focus
+
+		if (
+			(keyRelease === 2.4 && value === "2/4") ||
+			(keyRelease === 3.6 && value === "3/4") ||
+			(keyRelease === 4.8 && value === "4/4")
+		)
+			alert("correct");
+	};
+
 	const handleDropDown = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setNewVal(e.target.value);
 	};
 
-	const computeNotes = () => {
-		console.log(
-			"check the amount of notes entered (time wise) add up to time signature here",
-		);
-
-		console.log(
-			"reminder: you are comparing time signature bpm to amount total seconds of all notes",
-		);
-
-		// you need the total vals from the state for pressDown
-
-		// you need the total vals for button click
-
-		/*
-      calcs
-
-      bpm: 50
-      1 beat => 1.2 second
-      1 bar (3/4) => 3.6 seconds 
-      1 bar (2/4) => 2.4 seconds
-      1 bar (4/4) => 4.8 seconds 
-     */
-	};
 	return (
 		<div className={styles.container}>
 			<Head>
@@ -178,18 +136,17 @@ const Home: NextPage = () => {
 							New
 						</Button>
 						<Menu>
-							{/* TO DO: REFACTOR  */}
 							<MenuButton as={Button}>Time Signature</MenuButton>
 							<MenuList>
-								<MenuItem onClick={handleDropDown} value="2/4">
-									2/4
-								</MenuItem>
-								<MenuItem onClick={handleDropDown} value="3/4">
-									3/4
-								</MenuItem>
-								<MenuItem onClick={handleDropDown} value="4/4">
-									4/4
-								</MenuItem>
+								{["2/4", "3/4", "4/4"].map((timeSignature: string) => (
+									<MenuItem
+										onClick={handleDropDown}
+										value={timeSignature}
+										key={timeSignature}
+									>
+										{timeSignature}
+									</MenuItem>
+								))}
 							</MenuList>
 						</Menu>
 					</Flex>
@@ -218,26 +175,7 @@ const Home: NextPage = () => {
 							</>
 						)}
 					</Flex>
-
 					{keyRelease}
-					{/*keyRelease < 0
-						? ""
-						: keyRelease <= 0.25
-						? "semi-quaver"
-							? keyRelease <= 0.5
-							: "quaver"
-							? keyRelease <= 1
-							: "crotchet"
-							? keyRelease <= 2
-							: "minimum"
-							? keyRelease <= 4
-							: "semibreve"
-            : ""*/}
-					{/*keyRelease >= 0.25 && "semi-quaver"*/}
-					{/*keyRelease >= 0.5 && "quaver"*/}
-					{/*keyRelease >= 1 && "crotchet"*/}
-					{/*keyRelease >= 2 && "minimum"*/}
-					{/*keyRelease >= 4 && "semibreve"*/}
 				</div>
 			</main>
 		</div>
