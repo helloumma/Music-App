@@ -9,177 +9,171 @@ import { DataContainer } from "../types";
 import { Flex } from "@chakra-ui/react";
 
 type dropDown = {
-	value: string;
+  value: string;
 };
 
-// main functionality: get user to press down on keys, select a time signature => compute total time and then pop up box
-// then refactor the code to make the main section reusable on the dynamic pages + typescript all correct
-// then add some tests via vitetest (don't forget the coverage)
-// update the readme and say the buttons functionality will be next
-// forget about this app, move onto something new and look back at it after 292345 years and cringe.
-
 const Home: NextPage = () => {
-	const [keyPress, setKeyPress] = useState<number>(+new Date());
-	const [keyRelease, setKeyRelease] = useState<number>(0);
-	const [count, setCount] = useState<number>(0);
-	const [inputSelect, setInputSelect] = useState<boolean>(false);
-	const [buttonSelect, setButtonSelect] = useState<boolean>(false);
-	const [value, setNewVal] = useState();
+  const [keyPress, setKeyPress] = useState<number>(+new Date());
+  const [keyRelease, setKeyRelease] = useState<number>(0);
+  const [count, setCount] = useState<number>(0);
+  const [inputSelect, setInputSelect] = useState<boolean>(false);
+  const [buttonSelect, setButtonSelect] = useState<boolean>(false);
+  const [value, setNewVal] = useState();
 
-	let date: number;
+  let date: number;
 
-	const handleClick = () => {
-		setCount(count + 1);
-	};
+  const handleClick = () => {
+    setCount(count + 1);
+  };
 
-	// TO DO: you need to use types/interface here
-	const buttons = Array(count)
-		.fill(count)
-		.map((_: number, i: number) => (
-			<Link key={i} href={`/${i}`}>
-				<Button key={i} colorScheme="green">
-					Button {i + 1}
-				</Button>
-			</Link>
-		));
+  // TO DO: you need to use types/interface here
+  const buttons = Array(count)
+    .fill(count)
+    .map((_: number, i: number) => (
+      <Link key={i} href={`/${i}`}>
+        <Button key={i} colorScheme="green">
+          Button {i + 1}
+        </Button>
+      </Link>
+    ));
 
-	// TO DO: Types/interface
-	const inputClick = () => {
-		//e.preventdefault()
-		setInputSelect(true);
-		setButtonSelect(false);
-	};
+  // TO DO: Types/interface
+  const inputClick = () => {
+    //e.preventdefault()
+    setInputSelect(true);
+    setButtonSelect(false);
+  };
 
-	// TO DO: Types/interface
-	const buttonClick = () => {
-		setInputSelect(false);
-		setButtonSelect(true);
-	};
+  // TO DO: Types/interface
+  const buttonClick = () => {
+    setInputSelect(false);
+    setButtonSelect(true);
+  };
 
-	const onKeUp = (e: React.KeyboardEvent) => {
-		//console.log("key pressed date/time");
-		date = +new Date();
-		setKeyPress(date);
-	};
+  const onKeUp = (e: React.KeyboardEvent) => {
+    //console.log("key pressed date/time");
+    date = +new Date();
+    setKeyPress(date);
+  };
 
-	const onKeyDown = (e: React.KeyboardEvent) => {
-		//console.log("key released date/time");
-		const diff: number = +new Date() - keyPress;
-		//console.log(diff);
-		setKeyRelease(diff / 1000);
-		//console.log(e.key);
-		if (e.key.match(/[h-z]/gi)) alert("This is not a musical note.");
-		// figure out how to disable/look into focus
+  const onKeyDown = (e: React.KeyboardEvent) => {
+    //console.log("key released date/time");
+    const diff: number = +new Date() - keyPress;
+    //console.log(diff);
+    setKeyRelease(diff / 1000);
+    //console.log(e.key);
+    if (e.key.match(/[h-z]/gi)) alert("This is not a musical note.");
+    // figure out how to disable/look into focus
 
-		if (
-			(keyRelease === 2.4 && value === "2/4") ||
-			(keyRelease === 3.6 && value === "3/4") ||
-			(keyRelease === 4.8 && value === "4/4")
-		)
-			alert("correct");
-	};
+    if (
+      (keyRelease === 2.4 && value === "2/4") ||
+      (keyRelease === 3.6 && value === "3/4") ||
+      (keyRelease === 4.8 && value === "4/4")
+    )
+      alert("correct");
+  };
 
-	const handleDropDown = (e: React.ChangeEvent<HTMLInputElement>) => {
-		setNewVal(e.target.value);
-	};
+  const handleDropDown = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setNewVal(e.target.value);
+  };
 
-	return (
-		<div className={styles.container}>
-			<Head>
-				<title>Music App</title>
-				<meta name="description" content="Music App" />
-				<link rel="icon" href="/favicon.ico" />
-			</Head>
+  return (
+    <div className={styles.container}>
+      <Head>
+        <title>Music App</title>
+        <meta name="description" content="Music App" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
 
-			<main className={styles.main}>
-				<h1 className="app-title">music app</h1>
-				<p>
-					This is a small music app to gain a better understanding of time
-					signatures and types of music notes.
-				</p>
-				<Flex direction={"row"}>
-					<Button colorScheme="blue" onClick={inputClick}>
-						Input Box
-					</Button>
-					<Button colorScheme="blue" onClick={buttonClick}>
-						Buttons
-					</Button>
-				</Flex>
-				<div className="main-instructions">
-					{inputSelect || buttonSelect ? (
-						<ol>
-							<li>Select a time signature from the menu</li>
-							{inputSelect && (
-								<li>Hold down a letter between A to G into the input box</li>
-							)}
-							{buttonSelect && (
-								<li>
-									Click and hold on buttons letter between A to G into the input
-									box
-								</li>
-							)}
-							<li>The type of note will be shown on screen </li>
-							<li>
-								You may create new pages to experiment with different notes and
-								signatures
-							</li>
-							<li>You cannot input values outside of A to G</li>
-						</ol>
-					) : (
-						"Make a selection above to view instructions."
-					)}
-				</div>
+      <main className={styles.main}>
+        <h1 className="app-title">music app</h1>
+        <p>
+          This is a small music app to gain a better understanding of time
+          signatures and types of music notes.
+        </p>
+        <Flex direction={"row"}>
+          <Button colorScheme="blue" onClick={inputClick}>
+            Input Box
+          </Button>
+          <Button colorScheme="blue" onClick={buttonClick}>
+            Buttons
+          </Button>
+        </Flex>
+        <div className="main-instructions">
+          {inputSelect || buttonSelect ? (
+            <ol>
+              <li>Select a time signature from the menu</li>
+              {inputSelect && (
+                <li>Hold down a letter between A to G into the input box</li>
+              )}
+              {buttonSelect && (
+                <li>
+                  Click and hold on buttons letter between A to G into the input
+                  box
+                </li>
+              )}
+              <li>The type of note will be shown on screen </li>
+              <li>
+                You may create new pages to experiment with different notes and
+                signatures
+              </li>
+              <li>You cannot input values outside of A to G</li>
+            </ol>
+          ) : (
+            "Make a selection above to view instructions."
+          )}
+        </div>
 
-				<div className="main-section">
-					<Flex direction={"row"} justifyContent={"space-between"}>
-						<Button colorScheme="red" onClick={handleClick}>
-							New
-						</Button>
-						<Menu>
-							<MenuButton as={Button}>Time Signature</MenuButton>
-							<MenuList>
-								{["2/4", "3/4", "4/4"].map((timeSignature: string) => (
-									<MenuItem
-										onClick={handleDropDown}
-										value={timeSignature}
-										key={timeSignature}
-									>
-										{timeSignature}
-									</MenuItem>
-								))}
-							</MenuList>
-						</Menu>
-					</Flex>
-					{value}
-					<Flex key={count} direction={"row"} justifyContent="center">
-						{buttons}
-					</Flex>
+        <div className="main-section">
+          <Flex direction={"row"} justifyContent={"space-between"}>
+            <Button colorScheme="red" onClick={handleClick}>
+              New
+            </Button>
+            <Menu>
+              <MenuButton as={Button}>Time Signature</MenuButton>
+              <MenuList>
+                {["2/4", "3/4", "4/4"].map((timeSignature: string) => (
+                  <MenuItem
+                    onClick={handleDropDown}
+                    value={timeSignature}
+                    key={timeSignature}
+                  >
+                    {timeSignature}
+                  </MenuItem>
+                ))}
+              </MenuList>
+            </Menu>
+          </Flex>
+          {value}
+          <Flex key={count} direction={"row"} justifyContent="center">
+            {buttons}
+          </Flex>
 
-					<p>
-						Reminder: Only enter or press down notes for ONE bar within the time
-						signature. BPM is set to 50.
-					</p>
-					<Flex direction={"row"} justifyContent="center">
-						{inputSelect && (
-							<Input type="text" onKeyDown={onKeyDown} onKeyUp={onKeUp} />
-						)}
-						{buttonSelect && (
-							<>
-								<Button>A</Button>
-								<Button>B</Button>
-								<Button>C</Button>
-								<Button>D</Button>
-								<Button>E</Button>
-								<Button>F</Button>
-								<Button>G</Button>
-							</>
-						)}
-					</Flex>
-					{keyRelease}
-				</div>
-			</main>
-		</div>
-	);
+          <p>
+            Reminder: Only enter or press down notes for ONE bar within the time
+            signature. BPM is set to 50.
+          </p>
+          <Flex direction={"row"} justifyContent="center">
+            {inputSelect && (
+              <Input type="text" onKeyDown={onKeyDown} onKeyUp={onKeUp} />
+            )}
+            {buttonSelect && (
+              <>
+                <Button>A</Button>
+                <Button>B</Button>
+                <Button>C</Button>
+                <Button>D</Button>
+                <Button>E</Button>
+                <Button>F</Button>
+                <Button>G</Button>
+              </>
+            )}
+          </Flex>
+          {keyRelease}
+        </div>
+      </main>
+    </div>
+  );
 };
 
 export default Home;
